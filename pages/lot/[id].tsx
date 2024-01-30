@@ -142,7 +142,7 @@ export default function Page({
         <div className='grid md:grid-cols-2 lg:grid-cols-4 md:gap-2 lg:gap-4'>
           {listings.map((listing, idx) => {
             return (
-              <Link href={`/listing/${listing.id}`}>
+              <Link key={listing.id} href={`/listing/${listing.id}`}>
                 <div key={idx} className='flex flex-col'>
                   <div>
                     {listing.images.length ? (
@@ -153,6 +153,7 @@ export default function Page({
                       />
                     ) : (
                       <img
+                        alt="Placeholder Image"
                         className='rounded-lg shadow-lg'
                         src='https://fpoimg.com/300x250'
                       />

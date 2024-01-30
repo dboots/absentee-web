@@ -10,7 +10,7 @@ const Listings: React.FC<ListingsProps> = ({ auctions }) => {
     <div className='grid md:grid-cols-3 lg:grid-cols-4 md:gap-3 lg:gap-4'>
       {auctions.map((auction) => {
         return (
-          <div>
+          <div key={auction.id}>
             <Link href={`/lot/${auction.id}`}>
               <div
                 key={auction.id}

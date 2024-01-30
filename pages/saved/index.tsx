@@ -19,7 +19,7 @@ const SavedPage: React.FC = () => {
 
       initProfile();
     }
-  }, [user]);
+  }, [user, userService]);
 
   useEffect(() => {
     console.log('profile', profile);
