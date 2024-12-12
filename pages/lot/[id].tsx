@@ -142,9 +142,9 @@ export default function Page({
         <div className='grid md:grid-cols-2 lg:grid-cols-4 md:gap-2 lg:gap-4'>
           {listings.map((listing, idx) => {
             return (
-              <Link key={listing.id} href={`/listing/${listing.id}`}>
-                <div key={idx} className='flex flex-col'>
-                  <div>
+              <div key={idx} className='flex flex-col'>
+                <div>
+                  <Link key={listing.id} href={`/listing/${listing.id}`}>
                     {listing.images.length ? (
                       <img
                         style={{ height: 250 }}
@@ -153,50 +153,54 @@ export default function Page({
                       />
                     ) : (
                       <img
-                        alt="Placeholder Image"
+                        alt='Placeholder Image'
                         className='rounded-lg shadow-lg'
                         src='https://fpoimg.com/300x250'
                       />
                     )}
-                  </div>
-                  <div className='font-bold text-2xl'>{listing.title}</div>
-                  <div>
-                    <CountdownTimer targetTime={dateEnd.toISOString()} />
-                  </div>
-                  <div>Bids: {listing.bids.length}</div>
-                  <div className='flex align-center'>
-                    {user && isListingExpired(listing) ? (
-                      <>
-                        <Button
-                          color='success'
-                          variant='solid'
-                          onClick={() => {
-                            bid(listing, getBidAmount(listing));
-                          }}
-                        >
-                          Bid ${getBidAmount(listing)}
-                        </Button>
-                        <Button
-                          color='danger'
-                          variant={
-                            profile?.saved?.indexOf(listing.id) === -1
-                              ? 'solid'
-                              : 'bordered'
-                          }
-                          onClick={() => {
-                            save(listing);
-                          }}
-                          startContent={<CiStopwatch />}
-                        >
-                          {profile?.saved?.indexOf(listing.id) === -1
-                            ? 'Watch'
-                            : 'Watched'}
-                        </Button>
-                      </>
-                    ) : null}
-                  </div>
+                  </Link>
                 </div>
-              </Link>
+                <div className='font-bold text-2xl'>
+                  <Link key={listing.id} href={`/listing/${listing.id}`}>
+                    {listing.title}
+                  </Link>
+                </div>
+                <div>
+                  <CountdownTimer targetTime={dateEnd.toISOString()} />
+                </div>
+                <div>Bids: {listing.bids.length}</div>
+                <div className='flex align-center'>
+                  {user && isListingExpired(listing) ? (
+                    <>
+                      <Button
+                        color='success'
+                        variant='solid'
+                        onClick={() => {
+                          bid(listing, getBidAmount(listing));
+                        }}
+                      >
+                        Bid ${getBidAmount(listing)}
+                      </Button>
+                      <Button
+                        color='danger'
+                        variant={
+                          profile?.saved?.indexOf(listing.id) === -1
+                            ? 'solid'
+                            : 'bordered'
+                        }
+                        onClick={() => {
+                          save(listing);
+                        }}
+                        startContent={<CiStopwatch />}
+                      >
+                        {profile?.saved?.indexOf(listing.id) === -1
+                          ? 'Watch'
+                          : 'Watched'}
+                      </Button>
+                    </>
+                  ) : null}
+                </div>
+              </div>
             );
           })}
         </div>
